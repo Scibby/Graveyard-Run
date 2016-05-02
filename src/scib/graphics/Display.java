@@ -9,8 +9,16 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import scib.enums.StateId;
 import scib.main.Main;
+import scib.states.Menu;
+import scib.states.State;
 
+/**
+ * The window of the program. All render methods are called from this class.
+ * 
+ * @author Scibby
+ */
 public class Display extends Canvas{
 
 	/**
@@ -21,28 +29,33 @@ public class Display extends Canvas{
 	/**
 	 * Minimum width of the game.
 	 */
-	public static final int MIN_WIDTH = 1280;
+	public static final float MIN_WIDTH = 1280;
 
 	/**
 	 * Minimum height if the game.
 	 */
-	public static final int MIN_HEIGHT = 720;
+	public static final float MIN_HEIGHT = 720;
 
 	/**
 	 * Width of the window. Get the maximum width of the user's monitor.
 	 */
-	public static final int WIDTH = (int) DIMENTION.getWidth();
+	public static final float WIDTH = (int) DIMENTION.getWidth();
 
 	/**
 	 * Height of the window. Get the maximum height of the user's monitor.
 	 */
-	public static final int HEIGHT = (int) DIMENTION.getWidth();
+	public static final float HEIGHT = (int) DIMENTION.getHeight();
 
 	/**
 	 * Scale to use when scaling the window on different screens.
 	 */
-	public static final float SCALE = WIDTH / MIN_WIDTH;
-	
+	public static final float SCALE = HEIGHT / MIN_HEIGHT;
+
+	/**
+	 * Instance of the {@link Menu}.
+	 */
+	private Menu menu;
+
 	/**
 	 * Creates the window.
 	 */
@@ -53,6 +66,9 @@ public class Display extends Canvas{
 		setMaximumSize(DIMENTION);
 		setMinimumSize(DIMENTION);
 
+		/*
+		 * Sets the properties of the frame.
+		 */
 		frame.add(this);
 		frame.setUndecorated(true);
 		frame.pack();
@@ -60,25 +76,38 @@ public class Display extends Canvas{
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+
+		//Initiates the menu object.
+		menu = new Menu(StateId.Menu);
 	}
 
 	/**
-	 * Renders objects onto the screen. 
-	 * Is called by the run method in the {@link Main} class.
+	 * Renders objects onto the screen. Is called by the run method in the
+	 * {@link Main} class.
 	 */
 	public void render(){
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
-			this.createBufferStrategy(3);
+			this.createBufferStrategy(3); //'3' is the frames it can load in advance.
 			return;
 		}
 
+		//Initiates the graphics object used in various other classes.
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
-		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
 
+		//Avoids flickering.
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, (int) WIDTH, (int) HEIGHT);
+
+		//Runs when the menu is the current state.
+		if(State.currentState == StateId.Menu){
+			menu.render(g);
+		}
+
+		// Clears the graphics object.
 		g.dispose();
+
+		//Shows the graphics.
 		bs.show();
 	}
 }

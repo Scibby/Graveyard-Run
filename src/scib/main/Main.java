@@ -1,17 +1,16 @@
 package scib.main;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
+import scib.enums.StateId;
 import scib.graphics.Display;
+import scib.states.State;
 
 /**
  * Main class of the program. Contains the main loop and the frame.
  * 
  * @author Scibby
+ * @version 3
  */
-public class Main extends Canvas implements Runnable{
+public class Main implements Runnable{
 
 	/**
 	 * Title of the game.
@@ -29,14 +28,17 @@ public class Main extends Canvas implements Runnable{
 	private Thread thread;
 
 	/**
-	 * Instance of the display.
+	 * Instance of the {@link Display}.
 	 */
-	private Display disp;
+	private static Display disp;
 
 	/**
-	 * Initialisation. Runs once to initialise any variables or objects.
+	 * Initialisation. Runs once to initialise any variables or objects used
+	 * throughout the whole program.
 	 */
 	private void init(){
+		State.currentState = StateId.Menu;
+
 		disp = new Display();
 	}
 
@@ -55,8 +57,11 @@ public class Main extends Canvas implements Runnable{
 
 		init();
 
+		/**
+		 * Forces the game to render and tick at 60 times per second.
+		 */
 		long initialNanoTime = System.nanoTime();
-		double ticksPerSecond = 1000000000 / 60;
+		double ticksPerSecond = 1000000000 / 60; //The number '60' is the amount of ticks per second.
 		double delta = 0;
 		int updates = 0;
 		int frames = 0;
@@ -66,20 +71,26 @@ public class Main extends Canvas implements Runnable{
 			delta += (now - initialNanoTime) / ticksPerSecond;
 			initialNanoTime = now;
 			if(delta >= 1){
-				tick();
+				tick(); //Tick method.
 				updates++;
-				disp.render();
+				disp.render(); //Render method.
 				frames++;
 				delta--;
 			}
 
 			if(System.currentTimeMillis() - milli > 1000){
 				milli += 1000;
-				System.out.println(updates + " ticks, " + frames + " fps");
 				updates = 0;
 				frames = 0;
 			}
 		}
+	}
+
+	/**
+	 * @return The instance of the {@link Display} used in the program.
+	 */
+	public static Display getDisplay(){
+		return disp;
 	}
 
 	/**

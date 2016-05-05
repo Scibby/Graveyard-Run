@@ -62,6 +62,9 @@ public class Display extends Canvas{
 	public Display(){
 		JFrame frame = new JFrame(Main.TITLE);
 
+		/*
+		 * The size of the window. 
+		 */
 		setPreferredSize(DIMENTION);
 		setMaximumSize(DIMENTION);
 		setMinimumSize(DIMENTION);

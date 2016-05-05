@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import scib.enums.StateId;
 import scib.framework.Button;
@@ -30,10 +31,13 @@ public class Menu extends State{
 	/*
 	 * Buttons on the menu.
 	 */
-	Button playButton = new Button("PLAY", Display.WIDTH / 2 - 100, 150, 300, 75, Color.WHITE, new Color(200, 30, 30));
-	Button optionsButton = new Button("OPTIONS", Display.WIDTH / 2 - 100, 250, 300, 75, Color.WHITE, new Color(200, 30, 30));
-	Button quitButton = new Button("QUIT", Display.WIDTH / 2 - 100, 350, 300, 75, Color.WHITE, new Color(200, 30, 30));
-	
+	Button playButton = new Button("PLAY", Display.WIDTH / 2 - 100, 175, 300, 75, Color.WHITE, new Color(200, 35, 35));
+	Button optionsButton = new Button("OPTIONS", Display.WIDTH / 2 - 100, 275, 300, 75, Color.WHITE, new Color(200, 35, 35));
+	Button quitButton = new Button("QUIT", Display.WIDTH / 2 - 100, 375, 300, 75, Color.WHITE, new Color(200, 35, 35));
+
+	//Background image used.
+	private BufferedImage background = Main.getResLoader().loadImage("backgroundMenu");
+
 	/**
 	 * Renders the menu onto the screen.
 	 * 
@@ -42,42 +46,47 @@ public class Menu extends State{
 	 */
 	public void render(Graphics2D g){
 
-		//FontMetrics used in getting the size of the text.
+		//Font to be used throughout the menu.
+		Font menuFont;
+		
+		//Font metrics used in calculating the size of text.
 		FontMetrics fm;
-
+		
 		//Background colour.
 		g.setColor(new Color(10, 10, 100));
-
+		
 		//Draws the solid colour background.
 		g.fillRect(0, 0, (int) Display.WIDTH, (int) Display.HEIGHT);
 
-		//Font used in the menu. Size is set for the title.
-		Font menuFont = new Font("Demolition Crack Shadow", Font.BOLD, 60);
+		//Background image.
+		g.drawImage(background, 0, 50, (int) (background.getWidth() * 1.5), (int) Display.HEIGHT, null);
 
-		//FontMetrics is set for the font which is used in the title.
+		//Font used for the title.
+		menuFont = new Font("Demolition Crack Shadow", Font.BOLD, 60);
+
+		//Font metrics set to the title font.
 		fm = g.getFontMetrics(menuFont);
-
+		
 		//Sets the font for the title.
 		g.setFont(menuFont);
-
+		
 		//Colour of the title.
-		g.setColor(new Color(200, 30, 30));
-
+		g.setColor(new Color(200, 35, 35));
+		
 		//Draws the title.
 		g.drawString(Main.TITLE.toUpperCase(), ((Display.WIDTH / 2) - (fm.stringWidth(Main.TITLE.toUpperCase())) / 2) + 45, 100);
-		
-		//Font size changed for the buttons.
-		menuFont = menuFont.deriveFont(Font.PLAIN, 28);
-		
-		//Sets the font to the smaller button font.
+
+		//Changes the size of the font to be used for the buttons. 
+		menuFont = menuFont.deriveFont(menuFont.getStyle(), 28);
+
+		//Sets the font for the buttons.
 		g.setFont(menuFont);
-		
-		/**
+
+		/*
 		 * Renders the buttons onto the screen.
 		 */
 		playButton.drawButton(g);
 		optionsButton.drawButton(g);
 		quitButton.drawButton(g);
-		
 	}
 }

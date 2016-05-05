@@ -18,7 +18,7 @@ public class ResourceLoader{
 	public final static String IMAGE_LOCATION = "/images/";
 	
 	/**
-	 * File extention of the images.
+	 * File extension of the images.
 	 */
 	public final static String IMAGE_ENDING = ".png";
 	
@@ -28,12 +28,9 @@ public class ResourceLoader{
 	public final static String FONT_LOCATION = "/fonts/";
 	
 	/**
-	 * File extention of the fonts.
+	 * File extension of the fonts.
 	 */
 	public final static String FONT_ENDING = ".ttf";
-	
-	public ResourceLoader(){
-	}
 	
 	/**
 	 * Loads the image from the res folder.
@@ -42,10 +39,10 @@ public class ResourceLoader{
 	 *            path to the image used
 	 * @return the image object
 	 */
-	public BufferedImage loadImage(String path){
+	public BufferedImage loadImage(String imageName){
 		BufferedImage image = null;
 		try{
-			image = ImageIO.read(getClass().getResource(IMAGE_LOCATION + path + IMAGE_ENDING));
+			image = ImageIO.read(getClass().getResource(IMAGE_LOCATION + imageName + IMAGE_ENDING));
 		}catch(IOException e){
 			e.printStackTrace();
 		}

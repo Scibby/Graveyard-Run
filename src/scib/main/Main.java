@@ -38,14 +38,14 @@ public class Main implements Runnable{
 	private static Display disp;
 
 	/**
+	 * Instance of the {@link ResourceLoader}
+	 */
+	private static ResourceLoader resLoader;
+
+	/**
 	 * Instance of the {@link GraphicsEnvironment}.
 	 */
 	private static GraphicsEnvironment ge;
-
-	/**
-	 * Instance of the {@link ResourceLoader}.
-	 */
-	private static ResourceLoader resLoader;
 
 	/**
 	 * Initialisation. Runs once to initialise any variables or objects used
@@ -53,17 +53,18 @@ public class Main implements Runnable{
 	 */
 	private void init(){
 
-		MouseInput mouse = new MouseInput();
-		
-		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		MouseInput mouse = new MouseInput(); //An instance of the mouseInput class.
 
-		State.currentState = StateId.Menu;
-		disp = new Display();
-		
-		disp.addMouseListener(mouse);
-		disp.addMouseMotionListener(mouse);
-		
-		new Fonts("Demolition Crack Shadow");
+		resLoader = new ResourceLoader(); //Initiates the resourceLoader.
+		disp = new Display(); //Initiates the display.
+		ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //Initiates the graphicsEnvironment.
+
+		State.currentState = StateId.Menu; //The state in the beginning.
+
+		disp.addMouseListener(mouse); //Adds the listener for the mouse clicks.
+		disp.addMouseMotionListener(mouse); //Adds the listener for the mouse movements.
+
+		new Fonts("demolitionCrackShadow"); //Adds the font to the program.
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class Main implements Runnable{
 	 */
 	public void run(){
 
-		init(); //Runs the init method before anything else.
+		init();
 
 		/**
 		 * Forces the game to render and tick at 60 times per second.
@@ -118,18 +119,18 @@ public class Main implements Runnable{
 	}
 
 	/**
+	 * @return The instance of the {@link ResourceLoader} used in the program.
+	 */
+	public static ResourceLoader getResLoader(){
+		return resLoader;
+	}
+
+	/**
 	 * @return The instance of the {@link GraphicsEnvironment} used in the
 	 *         program.
 	 */
 	public static GraphicsEnvironment getGe(){
 		return ge;
-	}
-
-	/**
-	 * @return The instance of the {@link ResourceLoader} used in the program.
-	 */
-	public static ResourceLoader getResLoader(){
-		return resLoader;
 	}
 
 	/**

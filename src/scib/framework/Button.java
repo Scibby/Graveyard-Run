@@ -58,7 +58,7 @@ public class Button extends Rectangle{
 	 */
 	public void drawButton(Graphics2D g){
 
-		//FontMetrics used in getting the dimentions of the text.
+		//FontMetrics used in getting the dimensions of the text.
 		FontMetrics fm = g.getFontMetrics(g.getFont());
 
 		/*
@@ -69,13 +69,13 @@ public class Button extends Rectangle{
 		}else{
 			g.setColor(colour);
 		}
-		
+
 		//Sets the thickness of the rectangle to 3, rather than the default 1.
 		g.setStroke(new BasicStroke(3));
-		
+
 		//Draws the rectangle.
 		g.draw(this);
-		
+
 		//Draws the text of the button.
 		g.drawString(text, x + width / 2 - (fm.stringWidth(text) / 2), y + height / 2 + 15);
 

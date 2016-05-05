@@ -6,7 +6,10 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import javax.sound.sampled.Clip;
+
 import scib.inputs.MouseInput;
+import scib.libs.AudioPlayer;
 
 public class Button extends Rectangle{
 
@@ -25,11 +28,15 @@ public class Button extends Rectangle{
 	 */
 	private Color hoverColour;
 
+	private boolean played = false;
+
+	private AudioPlayer buttonSFX = new AudioPlayer("buttonAudio");
+
 	/**
 	 * Creates the button.
 	 * 
 	 * @param text
-	 *        Text to be displayed on the button.
+	 *        text to be displayed on the button.
 	 * @param x
 	 *        x co-ordinate of the button.
 	 * @param y
@@ -39,9 +46,9 @@ public class Button extends Rectangle{
 	 * @param height
 	 *        height of the button.
 	 * @param colour
-	 *        Colour of the button.
+	 *        colour of the button.
 	 * @param hoverColour
-	 *        Colour of the button when it is hovered over.
+	 *        colour of the button when it is hovered over.
 	 */
 	public Button(String text, float x, float y, float width, float height, Color colour, Color hoverColour){
 		super((int) x, (int) y, (int) width, (int) height);
@@ -54,7 +61,7 @@ public class Button extends Rectangle{
 	 * Renders the button and the text onto the screen.
 	 * 
 	 * @param g
-	 *        Graphics object used in rendering onto the screen.
+	 *        graphics object used in rendering onto the screen.
 	 */
 	public void drawButton(Graphics2D g){
 
@@ -66,8 +73,13 @@ public class Button extends Rectangle{
 		 */
 		if(MouseInput.MOUSE.intersects(this)){
 			g.setColor(hoverColour);
+			if(!played){
+				buttonSFX.play();
+				played = true;
+			}
 		}else{
 			g.setColor(colour);
+			played = false;
 		}
 
 		//Sets the thickness of the rectangle to 3, rather than the default 1.

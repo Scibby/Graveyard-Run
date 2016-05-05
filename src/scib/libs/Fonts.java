@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import scib.main.Main;
-import scib.util.ResourceLoader;
 
 /**
  * The class responsible for the creation of custom fonts.

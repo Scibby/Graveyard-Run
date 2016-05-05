@@ -6,8 +6,8 @@ import scib.enums.StateId;
 import scib.graphics.Display;
 import scib.inputs.MouseInput;
 import scib.libs.Fonts;
+import scib.libs.ResourceLoader;
 import scib.states.GameStateManager;
-import scib.util.ResourceLoader;
 
 /**
  * Main class of the program. Contains the main loop and the frame.

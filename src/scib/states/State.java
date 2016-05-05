@@ -10,13 +10,22 @@ import scib.enums.StateId;
  * @author Scibby
  */
 public abstract class State{
-	
+
 	protected StateId stateId;
-	public static StateId currentState;
-	
-	public State(StateId stateId){
-		this.stateId = stateId;
+
+	public State(){
 	}
-	
+
+	/**
+	 * Runs 60 times per second.
+	 */
+	public abstract void tick();
+
+	/**
+	 * Renders the various objects onto the screen.
+	 * 
+	 * @param g
+	 *        Graphics object used in rendering.
+	 */
 	public abstract void render(Graphics2D g);
 }

@@ -9,10 +9,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import scib.enums.StateId;
 import scib.main.Main;
+import scib.states.Game;
 import scib.states.Menu;
-import scib.states.State;
 
 /**
  * The window of the program. All render methods are called from this class.
@@ -57,13 +56,18 @@ public class Display extends Canvas{
 	private Menu menu;
 
 	/**
+	 * Instance of the {@link Game}.
+	 */
+	private static Game game;
+
+	/**
 	 * Creates the window.
 	 */
 	public Display(){
 		JFrame frame = new JFrame(Main.TITLE);
 
 		/*
-		 * The size of the window. 
+		 * The size of the window.
 		 */
 		setPreferredSize(DIMENTION);
 		setMaximumSize(DIMENTION);
@@ -79,9 +83,6 @@ public class Display extends Canvas{
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
-		//Initiates the menu object.
-		menu = new Menu(StateId.Menu);
 	}
 
 	/**
@@ -102,10 +103,7 @@ public class Display extends Canvas{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, (int) WIDTH, (int) HEIGHT);
 
-		//Runs when the menu is the current state.
-		if(State.currentState == StateId.Menu){
-			menu.render(g);
-		}
+		Main.getGsm().render(g);
 
 		// Clears the graphics object.
 		g.dispose();

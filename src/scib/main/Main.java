@@ -6,7 +6,7 @@ import scib.enums.StateId;
 import scib.graphics.Display;
 import scib.inputs.MouseInput;
 import scib.libs.Fonts;
-import scib.states.State;
+import scib.states.GameStateManager;
 import scib.util.ResourceLoader;
 
 /**
@@ -33,11 +33,6 @@ public class Main implements Runnable{
 	private Thread thread;
 
 	/**
-	 * Instance of the {@link Display}.
-	 */
-	private static Display disp;
-
-	/**
 	 * Instance of the {@link ResourceLoader}
 	 */
 	private static ResourceLoader resLoader;
@@ -48,18 +43,29 @@ public class Main implements Runnable{
 	private static GraphicsEnvironment ge;
 
 	/**
+	 * Instance of the {@link Display}.
+	 */
+	private static Display disp;
+
+	/**
+	 * Instance of the {@link GameStateManager}.
+	 */
+	private static GameStateManager gsm;
+
+	/**
 	 * Initialisation. Runs once to initialise any variables or objects used
 	 * throughout the whole program.
 	 */
 	private void init(){
 
-		MouseInput mouse = new MouseInput(); //An instance of the mouseInput class.
+		MouseInput mouse = new MouseInput(); //An instance of the mouse input class.
 
 		resLoader = new ResourceLoader(); //Initiates the resourceLoader.
+		ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //Initiates the graphics environment.
 		disp = new Display(); //Initiates the display.
-		ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //Initiates the graphicsEnvironment.
+		gsm = new GameStateManager(); //Initiates the game state manager.
 
-		State.currentState = StateId.Menu; //The state in the beginning.
+		GameStateManager.currentState = StateId.Menu; //The state in the beginning.
 
 		disp.addMouseListener(mouse); //Adds the listener for the mouse clicks.
 		disp.addMouseMotionListener(mouse); //Adds the listener for the mouse movements.
@@ -71,7 +77,7 @@ public class Main implements Runnable{
 	 * Runs 60 times a second. Is called by the run method.
 	 */
 	private void tick(){
-
+		gsm.tick(); //Ticks the game state manager.
 	}
 
 	/**
@@ -112,25 +118,28 @@ public class Main implements Runnable{
 	}
 
 	/**
-	 * @return The instance of the {@link Display} used in the program.
-	 */
-	public static Display getDisplay(){
-		return disp;
-	}
-
-	/**
-	 * @return The instance of the {@link ResourceLoader} used in the program.
+	 * @return The instance of the {@link ResourceLoader} used.
 	 */
 	public static ResourceLoader getResLoader(){
 		return resLoader;
 	}
 
 	/**
-	 * @return The instance of the {@link GraphicsEnvironment} used in the
-	 *         program.
+	 * @return The instance of the {@link GraphicsEnvironment} program.
 	 */
 	public static GraphicsEnvironment getGe(){
 		return ge;
+	}
+
+	/**
+	 * @return The instance of the {@link Display} used.
+	 */
+	public static Display getDisplay(){
+		return disp;
+	}
+
+	public static GameStateManager getGsm(){
+		return gsm;
 	}
 
 	/**

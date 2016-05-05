@@ -1,4 +1,4 @@
-package scib.framework;
+package scib.graphics;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

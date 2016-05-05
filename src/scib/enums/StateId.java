@@ -6,5 +6,5 @@ package scib.enums;
  * @author Scibby
  */
 public enum StateId{
-	Menu,
+	Menu, Game
 }

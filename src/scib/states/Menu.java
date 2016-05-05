@@ -6,6 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
 import scib.enums.StateId;
+import scib.framework.Button;
 import scib.graphics.Display;
 import scib.main.Main;
 
@@ -26,6 +27,13 @@ public class Menu extends State{
 		super(stateId);
 	}
 
+	/*
+	 * Buttons on the menu.
+	 */
+	Button playButton = new Button("PLAY", Display.WIDTH / 2 - 100, 150, 300, 75, Color.WHITE, new Color(200, 30, 30));
+	Button optionsButton = new Button("OPTIONS", Display.WIDTH / 2 - 100, 250, 300, 75, Color.WHITE, new Color(200, 30, 30));
+	Button quitButton = new Button("QUIT", Display.WIDTH / 2 - 100, 350, 300, 75, Color.WHITE, new Color(200, 30, 30));
+	
 	/**
 	 * Renders the menu onto the screen.
 	 * 
@@ -57,6 +65,19 @@ public class Menu extends State{
 
 		//Draws the title.
 		g.drawString(Main.TITLE.toUpperCase(), ((Display.WIDTH / 2) - (fm.stringWidth(Main.TITLE.toUpperCase())) / 2) + 45, 100);
-
+		
+		//Font size changed for the buttons.
+		menuFont = menuFont.deriveFont(Font.PLAIN, 28);
+		
+		//Sets the font to the smaller button font.
+		g.setFont(menuFont);
+		
+		/**
+		 * Renders the buttons onto the screen.
+		 */
+		playButton.drawButton(g);
+		optionsButton.drawButton(g);
+		quitButton.drawButton(g);
+		
 	}
 }

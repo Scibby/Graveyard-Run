@@ -4,8 +4,10 @@ import java.awt.GraphicsEnvironment;
 
 import scib.enums.StateId;
 import scib.graphics.Display;
+import scib.inputs.MouseInput;
 import scib.libs.Fonts;
 import scib.states.State;
+import scib.util.ResourceLoader;
 
 /**
  * Main class of the program. Contains the main loop and the frame.
@@ -41,16 +43,26 @@ public class Main implements Runnable{
 	private static GraphicsEnvironment ge;
 
 	/**
+	 * Instance of the {@link ResourceLoader}.
+	 */
+	private static ResourceLoader resLoader;
+
+	/**
 	 * Initialisation. Runs once to initialise any variables or objects used
 	 * throughout the whole program.
 	 */
 	private void init(){
+
+		MouseInput mouse = new MouseInput();
 		
 		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
 		State.currentState = StateId.Menu;
-
 		disp = new Display();
+		
+		disp.addMouseListener(mouse);
+		disp.addMouseMotionListener(mouse);
+		
 		new Fonts("Demolition Crack Shadow");
 	}
 
@@ -111,6 +123,13 @@ public class Main implements Runnable{
 	 */
 	public static GraphicsEnvironment getGe(){
 		return ge;
+	}
+
+	/**
+	 * @return The instance of the {@link ResourceLoader} used in the program.
+	 */
+	public static ResourceLoader getResLoader(){
+		return resLoader;
 	}
 
 	/**

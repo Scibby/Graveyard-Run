@@ -1,7 +1,10 @@
 package scib.main;
 
+import java.awt.GraphicsEnvironment;
+
 import scib.enums.StateId;
 import scib.graphics.Display;
+import scib.libs.Fonts;
 import scib.states.State;
 
 /**
@@ -33,13 +36,22 @@ public class Main implements Runnable{
 	private static Display disp;
 
 	/**
+	 * Instance of the {@link GraphicsEnvironment}.
+	 */
+	private static GraphicsEnvironment ge;
+
+	/**
 	 * Initialisation. Runs once to initialise any variables or objects used
 	 * throughout the whole program.
 	 */
 	private void init(){
+		
+		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
 		State.currentState = StateId.Menu;
 
 		disp = new Display();
+		new Fonts("Demolition Crack Shadow");
 	}
 
 	/**
@@ -55,7 +67,7 @@ public class Main implements Runnable{
 	 */
 	public void run(){
 
-		init();
+		init(); //Runs the init method before anything else.
 
 		/**
 		 * Forces the game to render and tick at 60 times per second.
@@ -91,6 +103,14 @@ public class Main implements Runnable{
 	 */
 	public static Display getDisplay(){
 		return disp;
+	}
+
+	/**
+	 * @return The instance of the {@link GraphicsEnvironment} used in the
+	 *         program.
+	 */
+	public static GraphicsEnvironment getGe(){
+		return ge;
 	}
 
 	/**

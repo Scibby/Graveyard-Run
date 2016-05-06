@@ -1,4 +1,4 @@
-package scib.libs;
+package scib.util;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;

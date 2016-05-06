@@ -1,4 +1,4 @@
-package scib.libs;
+package scib.util;
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;

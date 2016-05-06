@@ -26,11 +26,13 @@ public class MouseInput implements MouseInputListener{
 	 */
 	public void mouseClicked(MouseEvent e){
 		int buttonClicked = e.getButton();
-
-		if(GameStateManager.currentState == StateId.Menu){
-			if(buttonClicked == MouseEvent.BUTTON1){
-				if(MOUSE.intersects(Menu.playButton)){
-					GameStateManager.currentState = StateId.Game;
+		
+		if(buttonClicked == MouseEvent.BUTTON1){ //If left click was pressed.
+			if(GameStateManager.currentState == StateId.Menu){ //If the menu is the current state.
+				if(MOUSE.intersects(Menu.playButton)){ //When the play button is pressed.
+					GameStateManager.currentState = StateId.Game; //Changes the state from the menu to the game.
+				}else if(MOUSE.intersects(Menu.quitButton)){ //When the quit button is pressed.
+					System.exit(1); //Ends the program.
 				}
 			}
 		}

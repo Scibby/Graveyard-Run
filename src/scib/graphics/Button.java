@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 import javax.sound.sampled.Clip;
 
 import scib.inputs.MouseInput;
-import scib.libs.AudioPlayer;
+import scib.util.AudioPlayer;
 
 public class Button extends Rectangle{
 

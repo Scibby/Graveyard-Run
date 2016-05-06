@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 
 import scib.main.Main;
 import scib.states.Game;
+import scib.states.GameStateManager;
 import scib.states.Menu;
 
 /**
@@ -49,16 +50,6 @@ public class Display extends Canvas{
 	 * Scale to use when scaling the window on different screens.
 	 */
 	public static final float SCALE = HEIGHT / MIN_HEIGHT;
-
-	/**
-	 * Instance of the {@link Menu}.
-	 */
-	private Menu menu;
-
-	/**
-	 * Instance of the {@link Game}.
-	 */
-	private static Game game;
 
 	/**
 	 * Creates the window.
@@ -103,7 +94,8 @@ public class Display extends Canvas{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, (int) WIDTH, (int) HEIGHT);
 
-		Main.getGsm().render(g);
+		//Renders the game state manager.
+		GameStateManager.render(g);
 
 		// Clears the graphics object.
 		g.dispose();

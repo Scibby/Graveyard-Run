@@ -29,7 +29,9 @@ public class Game extends State{
 	 * Renders the objects onto the screen.
 	 */
 	public void render(Graphics2D g){
+		g.scale(Display.SCALE, Display.SCALE); //Scales the window to the minimum width and height.
 		g.setColor(Color.RED);
-		g.fillRect(0, 0, (int) Display.WIDTH / 2, (int)  Display.HEIGHT / 2);
+		g.fillRect(0, 0, (int) Display.MIN_WIDTH / 2, (int)  Display.MIN_HEIGHT / 2);
+		g.scale(1, 1);
 	}
 }

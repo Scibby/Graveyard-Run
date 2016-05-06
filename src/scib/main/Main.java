@@ -5,15 +5,15 @@ import java.awt.GraphicsEnvironment;
 import scib.enums.StateId;
 import scib.graphics.Display;
 import scib.inputs.MouseInput;
-import scib.libs.Fonts;
-import scib.libs.ResourceLoader;
+import scib.objects.ObjectHandler;
 import scib.states.GameStateManager;
+import scib.util.Fonts;
+import scib.util.ResourceLoader;
 
 /**
  * Main class of the program. Contains the main loop and the frame.
  * 
  * @author Scibby
- * @version 3
  */
 public class Main implements Runnable{
 
@@ -48,6 +48,11 @@ public class Main implements Runnable{
 	private static Display disp;
 
 	/**
+	 * Instance of the {@link ObjectHandler}.
+	 */
+	private ObjectHandler handler;
+
+	/**
 	 * Instance of the {@link GameStateManager}.
 	 */
 	private static GameStateManager gsm;
@@ -63,7 +68,8 @@ public class Main implements Runnable{
 		resLoader = new ResourceLoader(); //Initiates the resourceLoader.
 		ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //Initiates the graphics environment.
 		disp = new Display(); //Initiates the display.
-		gsm = new GameStateManager(); //Initiates the game state manager.
+		handler = new ObjectHandler(); //Initiates the object handler;
+		gsm = new GameStateManager(handler); //Initiates the game state manager.
 
 		GameStateManager.currentState = StateId.Menu; //The state in the beginning.
 
@@ -136,10 +142,6 @@ public class Main implements Runnable{
 	 */
 	public static Display getDisplay(){
 		return disp;
-	}
-
-	public static GameStateManager getGsm(){
-		return gsm;
 	}
 
 	/**

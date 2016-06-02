@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 
 import scib.enums.StateId;
 import scib.graphics.Display;
-import scib.main.Main;
 import scib.objects.ObjectHandler;
 
 /**

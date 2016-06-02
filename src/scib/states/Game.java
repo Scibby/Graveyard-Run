@@ -29,20 +29,19 @@ public class Game extends State{
 	}
 
 	/**
-	 * Runs 60 times per second.
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void tick(){
 
 	}
 
 	/**
-	 * Renders the objects onto the screen.
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void render(Graphics2D g){
-		g.setColor(Color.RED);
-		//g.fillRect(0, 0, (int) Display.MIN_WIDTH / 2, (int)  Display.MIN_HEIGHT / 2);
-
-		g.setColor(Color.WHITE);
 
 	}
+
 }

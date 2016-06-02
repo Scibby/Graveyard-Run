@@ -25,7 +25,7 @@ public abstract class State{
 	 * Renders the various objects onto the screen.
 	 * 
 	 * @param g
-	 *        Graphics object used in rendering.
+	 *        graphics object used in rendering.
 	 */
 	public abstract void render(Graphics2D g);
 }

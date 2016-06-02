@@ -12,6 +12,7 @@ import javax.sound.sampled.Clip;
 import scib.inputs.MouseInput;
 import scib.util.AudioPlayer;
 
+
 public class Button extends Rectangle{
 
 	/**

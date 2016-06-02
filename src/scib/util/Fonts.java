@@ -3,8 +3,6 @@ package scib.util;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-import scib.main.Main;
-
 /**
  * The class responsible for the creation of custom fonts.
  * 

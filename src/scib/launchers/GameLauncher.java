@@ -1,6 +1,4 @@
-package scib.main;
-
-import java.awt.GraphicsEnvironment;
+package scib.launchers;
 
 import scib.enums.StateId;
 import scib.graphics.Display;
@@ -8,14 +6,8 @@ import scib.inputs.MouseInput;
 import scib.objects.ObjectHandler;
 import scib.states.GameStateManager;
 import scib.util.Fonts;
-import scib.util.ResourceLoader;
 
-/**
- * Main class of the program. Contains the main loop and the frame.
- * 
- * @author Scibby
- */
-public class Main implements Runnable{
+public class GameLauncher implements Runnable{
 
 	/**
 	 * Title of the game.
@@ -33,16 +25,6 @@ public class Main implements Runnable{
 	private Thread thread;
 
 	/**
-	 * Instance of the {@link ResourceLoader}
-	 */
-	private static ResourceLoader resLoader;
-
-	/**
-	 * Instance of the {@link GraphicsEnvironment}.
-	 */
-	private static GraphicsEnvironment ge;
-
-	/**
 	 * Instance of the {@link Display}.
 	 */
 	private static Display disp;
@@ -53,11 +35,6 @@ public class Main implements Runnable{
 	private ObjectHandler handler;
 
 	/**
-	 * Instance of the {@link GameStateManager}.
-	 */
-	private static GameStateManager gsm;
-
-	/**
 	 * Initialisation. Runs once to initialise any variables or objects used
 	 * throughout the whole program.
 	 */
@@ -65,11 +42,8 @@ public class Main implements Runnable{
 
 		MouseInput mouse = new MouseInput(); //An instance of the mouse input class.
 
-		resLoader = new ResourceLoader(); //Initiates the resourceLoader.
-		ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //Initiates the graphics environment.
 		disp = new Display(); //Initiates the display.
 		handler = new ObjectHandler(); //Initiates the object handler;
-		gsm = new GameStateManager(handler); //Initiates the game state manager.
 
 		GameStateManager.currentState = StateId.Menu; //The state in the beginning.
 
@@ -83,7 +57,7 @@ public class Main implements Runnable{
 	 * Runs 60 times a second. Is called by the run method.
 	 */
 	private void tick(){
-		gsm.tick(); //Ticks the game state manager.
+		GameStateManager.tick(); //Ticks the game state manager.
 	}
 
 	/**
@@ -124,10 +98,12 @@ public class Main implements Runnable{
 	}
 
 	/**
-	 * @return The instance of the {@link Display} used.
+	 * Main method. Starts the game.
 	 */
-	public static Display getDisplay(){
-		return disp;
+	public static void main(String[] args){
+
+		new GameLauncher().start();
+		;
 	}
 
 	/**
@@ -144,6 +120,7 @@ public class Main implements Runnable{
 	/**
 	 * Stops the thread and closes the game.
 	 */
+	@SuppressWarnings("unused")
 	private synchronized void stop(){
 		if(!running) return;
 
@@ -156,12 +133,4 @@ public class Main implements Runnable{
 		System.exit(1);
 	}
 
-	/**
-	 * Main method. Starts the game.
-	 */
-	public static void main(String[] args){
-		Main main = new Main();
-
-		main.start();
-	}
 }

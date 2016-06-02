@@ -5,8 +5,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import scib.main.Main;
-
 /**
  * @author Scibby
  */

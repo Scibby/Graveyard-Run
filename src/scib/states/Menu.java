@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import scib.graphics.Display;
-import scib.main.Main;
+import scib.launchers.GameLauncher;
 import scib.ui.Button;
 import scib.util.ResourceLoader;
 
@@ -25,12 +25,6 @@ public class Menu extends State{
 		
 	}
 
-	/**
-	 * Runs 60 times per second.
-	 */
-	public void tick(){
-
-	}
 
 	/*
 	 * Buttons on the menu.
@@ -41,6 +35,13 @@ public class Menu extends State{
 
 	//Background image used.
 	private BufferedImage background = new ResourceLoader().loadImage("backgroundMenu");
+
+	/**
+	 * Runs 60 times per second.
+	 */
+	public void tick(){
+
+	}
 
 	/**
 	 * Renders the menu onto the screen.
@@ -78,7 +79,7 @@ public class Menu extends State{
 		g.setColor(new Color(200, 35, 35));
 
 		//Draws the title.
-		g.drawString(Main.TITLE.toUpperCase(), ((Display.WIDTH / 2) - (fm.stringWidth(Main.TITLE.toUpperCase())) / 2) + 45, 100);
+		g.drawString(GameLauncher.TITLE.toUpperCase(), ((Display.WIDTH / 2) - (fm.stringWidth(GameLauncher.TITLE.toUpperCase())) / 2) + 45, 100);
 
 		//Changes the size of the font to be used for the buttons. 
 		menuFont = menuFont.deriveFont(menuFont.getStyle(), 28);

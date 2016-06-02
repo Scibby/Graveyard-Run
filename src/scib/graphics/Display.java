@@ -9,10 +9,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import scib.main.Main;
-import scib.states.Game;
+import scib.launchers.GameLauncher;
 import scib.states.GameStateManager;
-import scib.states.Menu;
 
 /**
  * The window of the program. All render methods are called from this class.
@@ -55,7 +53,7 @@ public class Display extends Canvas{
 	 * Creates the window.
 	 */
 	public Display(){
-		JFrame frame = new JFrame(Main.TITLE);
+		JFrame frame = new JFrame(GameLauncher.TITLE);
 
 		/*
 		 * The size of the window.

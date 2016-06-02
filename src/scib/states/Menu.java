@@ -35,9 +35,9 @@ public class Menu extends State{
 	/*
 	 * Buttons on the menu.
 	 */
-	public static Button playButton = new Button("PLAY", Display.WIDTH / 2 - 100, 175, 300, 75, Color.WHITE, new Color(200, 35, 35));
-	public static Button optionsButton = new Button("OPTIONS", Display.WIDTH / 2 - 100, 275, 300, 75, Color.WHITE, new Color(200, 35, 35));
-	public static Button quitButton = new Button("QUIT", Display.WIDTH / 2 - 100, 375, 300, 75, Color.WHITE, new Color(200, 35, 35));
+	public static Button playButton 		= new Button("PLAY",	 Display.WIDTH / 2 - 100, 175, 300, 75, Color.WHITE, new Color(200, 35, 35));
+	public static Button optionsButton	 	= new Button("OPTIONS",	 Display.WIDTH / 2 - 100, 280, 300, 75, Color.WHITE, new Color(200, 35, 35));
+	public static Button quitButton 		= new Button("QUIT",	 Display.WIDTH / 2 - 100, 385, 300, 75, Color.WHITE, new Color(200, 35, 35));
 
 	//Background image used.
 	private BufferedImage background = new ResourceLoader().loadImage("backgroundMenu");

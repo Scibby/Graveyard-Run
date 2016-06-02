@@ -2,6 +2,7 @@ package scib.ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -33,11 +34,12 @@ public class Button extends Rectangle{
 	 */
 	private AudioPlayer buttonSFX = new AudioPlayer("buttonAudio");
 
-	
 	/**
 	 * Whether the audio has been played while the button is being hovered over.
 	 */
 	private boolean played = false;
+
+	private boolean hovering = false;
 
 	/**
 	 * Creates the button.
@@ -72,25 +74,53 @@ public class Button extends Rectangle{
 	 */
 	public void drawButton(Graphics2D g){
 
-		//FontMetrics used in getting the dimensions of the text.
-		FontMetrics fm = g.getFontMetrics(g.getFont());
 
 		/*
 		 * Checks if the mouse is intersecting the button.
 		 */
 		if(MouseInput.MOUSE.intersects(this)){
+			hovering = true;
 			g.setColor(hoverColour);
 			if(!played){
 				buttonSFX.play();
 				played = true;
+
+				width += 40;
+				height += 40;
+
+				x -= 20;
+				y -= 20;
+				
 			}
+			g.setFont(new Font(g.getFont().getFontName(), g.getFont().getStyle(), 34));
+			g.setStroke(new BasicStroke(6));
+
 		}else{
+			hovering = false;
+
 			g.setColor(colour);
+
+			if(played){
+				width -= 40;
+				height -= 40;
+
+				x += 20;
+				y += 20;
+				
+
+			}
+
+			//Sets the thickness of the rectangle to 3, rather than the default 1.
+			g.setStroke(new BasicStroke(3));
+			
+			
+			g.setFont(new Font(g.getFont().getFontName(), g.getFont().getStyle(), 28));
 			played = false;
 		}
 
-		//Sets the thickness of the rectangle to 3, rather than the default 1.
-		g.setStroke(new BasicStroke(3));
+
+		//FontMetrics used in getting the dimensions of the text.
+		FontMetrics fm = g.getFontMetrics(g.getFont());
 
 		//Draws the rectangle.
 		g.draw(this);
@@ -100,6 +130,7 @@ public class Button extends Rectangle{
 
 		//Sets the thickness back to the default thickness.
 		g.setStroke(new BasicStroke(1));
+
 	}
 
 	public String getText(){

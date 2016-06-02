@@ -69,9 +69,9 @@ public class Display extends Canvas{
 		 */
 		frame.add(this);
 		frame.setUndecorated(true);
-		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}

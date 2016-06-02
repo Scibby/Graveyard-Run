@@ -23,6 +23,11 @@ public class ResourceLoader{
 	 * File extension of the images.
 	 */
 	public final static String IMAGE_ENDING = ".png";
+	
+	/**
+	 * Location of the levels.
+	 */
+	public final static String LEVEL_LOCATION = "/levels/";
 
 	/**
 	 * Location of the fonts.
@@ -47,9 +52,9 @@ public class ResourceLoader{
 	/**
 	 * Loads the image from the res folder.
 	 * 
-	 * @param name
-	 *        name of the image used
-	 * @return the image object
+	 * @param imageName
+	 *        name of the image being loaded.
+	 * @return the image object.
 	 */
 	public BufferedImage loadImage(String imageName){
 		BufferedImage image = null;
@@ -59,6 +64,16 @@ public class ResourceLoader{
 			e.printStackTrace();
 		}
 		return image;
+	}
+	
+	public BufferedImage loadLevel(String levelName){
+		BufferedImage level = null;
+		try{
+			level = ImageIO.read(getClass().getResource(LEVEL_LOCATION + levelName + IMAGE_ENDING));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return level;
 	}
 
 	/**

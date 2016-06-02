@@ -33,7 +33,7 @@ public class Fonts{
 	 * Registers the font onto the {@link GraphicsEnvironment}.
 	 */
 	public void registerFont(){
-		GraphicsEnvironment ge = Main.getGe();
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		try{
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(fileLocation)));
 		}catch(Exception e){

@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import scib.graphics.Button;
 import scib.graphics.Display;
 import scib.main.Main;
+import scib.util.ResourceLoader;
 
 /**
  * Class used in rendering the main menu at the beginning of the game.
@@ -39,13 +40,13 @@ public class Menu extends State{
 	public static Button quitButton = new Button("QUIT", Display.WIDTH / 2 - 100, 375, 300, 75, Color.WHITE, new Color(200, 35, 35));
 
 	//Background image used.
-	private BufferedImage background = Main.getResLoader().loadImage("backgroundMenu");
+	private BufferedImage background = new ResourceLoader().loadImage("backgroundMenu");
 
 	/**
 	 * Renders the menu onto the screen.
 	 * 
 	 * @param g
-	 *        Graphics object used in rendering the text.
+	 *        graphics object used in rendering the text.
 	 */
 	public void render(Graphics2D g){
 

@@ -1,11 +1,10 @@
 package scib.objects;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import scib.enums.ObjectId;
-import scib.main.Main;
 
 /**
  * @author Scibby
@@ -91,10 +90,10 @@ public abstract class GameObject{
 	/**
 	 * Runs 60 times a second. Contains the bulk of the code.
 	 * 
-	 * @param object
+	 * @param objectList
 	 *        list of all the objects
 	 */
-	public abstract void tick(LinkedList<GameObject> object);
+	public abstract void tick(LinkedList<GameObject> objectList);
 
 	/**
 	 * Renders the graphics on the screen.
@@ -102,7 +101,7 @@ public abstract class GameObject{
 	 * @param g
 	 *        the graphics object used for rendering the object.
 	 */
-	public abstract void render(Graphics g);
+	public abstract void render(Graphics2D g);
 
 	/**
 	 * @return the rectangle of the whole object.

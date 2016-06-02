@@ -28,9 +28,16 @@ public class Button extends Rectangle{
 	 */
 	private Color hoverColour;
 
-	private boolean played = false;
-
+	/**
+	 * Sound effect when hovering over the button.
+	 */
 	private AudioPlayer buttonSFX = new AudioPlayer("buttonAudio");
+
+	
+	/**
+	 * Whether the audio has been played while the button is being hovered over.
+	 */
+	private boolean played = false;
 
 	/**
 	 * Creates the button.

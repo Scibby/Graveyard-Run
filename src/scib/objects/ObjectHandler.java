@@ -1,9 +1,10 @@
 package scib.objects;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 /**
+ * Used in handling various functions of objects. Adds, removes, ticks and renders all of the different objects.
  * 
  * @author Scibby
  */
@@ -14,15 +15,13 @@ public class ObjectHandler{
 	 */
 	public LinkedList<GameObject> objectList = new LinkedList<GameObject>();
 
-	private GameObject object;
-
 	/**
 	 * Runs 60 times every second ticks the other objects.
 	 */
 	public void tick(){
 		for(int i = 0; i < objectList.size(); i++){
-			object = objectList.get(i);
-			object.tick(objectList);
+			objectList.get(i).tick(objectList);
+
 		}
 	}
 
@@ -30,12 +29,11 @@ public class ObjectHandler{
 	 * Starts the render method for the other objects.
 	 * 
 	 * @param g
-	 *        graphics object used to render objects onto the screen.
+	 *        Graphics object used to render objects onto the screen.
 	 */
-	public void render(Graphics g){
+	public void render(Graphics2D g){
 		for(int i = 0; i < objectList.size(); i++){
-			object = objectList.get(i);
-			object.render(g);
+			objectList.get(i).render(g);
 		}
 	}
 

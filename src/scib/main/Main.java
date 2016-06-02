@@ -124,20 +124,6 @@ public class Main implements Runnable{
 	}
 
 	/**
-	 * @return The instance of the {@link ResourceLoader} used.
-	 */
-	public static ResourceLoader getResLoader(){
-		return resLoader;
-	}
-
-	/**
-	 * @return The instance of the {@link GraphicsEnvironment} program.
-	 */
-	public static GraphicsEnvironment getGe(){
-		return ge;
-	}
-
-	/**
 	 * @return The instance of the {@link Display} used.
 	 */
 	public static Display getDisplay(){

@@ -15,7 +15,7 @@ public class AudioPlayer{
 	/**
 	 * Instance of the {@link ResourceLoader}.
 	 */
-	private ResourceLoader resLoader = Main.getResLoader();
+	private ResourceLoader resLoader = new ResourceLoader();
 
 	/**
 	 * Audio clip which is being played.

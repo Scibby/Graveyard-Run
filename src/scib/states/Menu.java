@@ -6,9 +6,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import scib.graphics.Button;
 import scib.graphics.Display;
 import scib.main.Main;
+import scib.ui.Button;
 import scib.util.ResourceLoader;
 
 /**

@@ -1,4 +1,4 @@
-package scib.graphics;
+package scib.ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
